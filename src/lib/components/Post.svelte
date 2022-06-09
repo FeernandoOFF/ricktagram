@@ -111,11 +111,11 @@
 		<div class="comments mt-4 font-light text-neutral-focus text-xs">
 			{#each post.comments as comment, i}
 				{#if i >= 1 && !seeMore}
-					<p on:click={() => (seeMore = true)}>see more</p>
+					<p on:click={() => (seeMore = true)}>See more</p>
 				{:else}
 					<Comment {...comment} />
-					{#if i === post.comments.length - 1}
-						<p on:click={() => (seeMore = false)}>see less</p>
+					{#if post.comments.length > 1 && i === post.comments.length - 1}
+						<p on:click={() => (seeMore = false)}>See less</p>
 					{/if}
 				{/if}
 			{/each}
