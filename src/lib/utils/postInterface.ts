@@ -1,10 +1,8 @@
 import type { IComment } from './commentInterface';
+import type { IUser } from './userInterface';
 
 export interface IPost {
-	user: {
-		name: string;
-		id: number;
-	};
+	user: IUser;
 	time: number;
 	likes: number;
 	comments: IComment[];

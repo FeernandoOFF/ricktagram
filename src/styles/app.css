@@ -6,4 +6,7 @@
 	.container-width {
 		@apply md:w-3/4 w-full mx-auto;
 	}
+	.icon-rounded {
+		@apply p-2 bg-base-300 rounded-full;
+	}
 }

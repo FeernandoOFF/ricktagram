@@ -3,5 +3,7 @@
 	import '../styles/app.css';
 </script>
 
-<Header />
-<slot />
+<div class="relative">
+	<Header />
+	<slot />
+</div>

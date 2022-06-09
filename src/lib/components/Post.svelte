@@ -1,14 +1,21 @@
 <script lang="ts">
-	import type { IPost } from '$lib/utils/postInterface';
-
 	import Comment from './Comment.svelte';
+
+	import type { IPost } from '$lib/utils/postInterface';
+	import type { IUser } from '$lib/utils/userInterface';
+
 	export let post: IPost;
+	export let profile: IUser | null = null;
+
 	let seeMore = false;
 </script>
 
 <div class="card w-full md:max-w-[800px] mx-auto bg-base-200 shadow-xl py-4 px-2 text-sm my-8 ">
 	<div class="post-head flex justify-between  items-center mb-3">
-		<div class="post-friend flex items-center">
+		<div
+			class="post-friend flex items-center cursor-pointer"
+			on:click={() => (profile = post.user)}
+		>
 			<div class="avatar w-8 h-8 bg-base-300 rounded-full grid place-items-center mr-3">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +60,7 @@
 		/>
 	</figure>
 	<div class=" items-center ml-1 my-2">
-		<div class="interaction flex w-1/3 justify-between ">
+		<div class="interaction flex w-1/3 max-w-[180px]  justify-between ">
 			<div class="icon-interaction">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +110,9 @@
 				</svg>
 			</div>
 		</div>
-		<div class="comments mt-4 flex w-1/2 text-xs font-light text-neutral-focus justify-between">
+		<div
+			class="reactions mt-4 flex w-1/2 max-w-[150px] text-xs font-light text-neutral-focus justify-between"
+		>
 			<p><span class="font-bold">{post.likes} </span> Likes</p>
 			<b>-</b>
 			<p><span class="font-bold">{post.comments.length} </span> Comments</p>
@@ -111,11 +120,15 @@
 		<div class="comments mt-4 font-light text-neutral-focus text-xs">
 			{#each post.comments as comment, i}
 				{#if i >= 1 && !seeMore}
-					<p on:click={() => (seeMore = true)}>See more</p>
+					<p class="cursor-pointer  underline opacity-60" on:click={() => (seeMore = true)}>
+						See more
+					</p>
 				{:else}
 					<Comment {...comment} />
 					{#if post.comments.length > 1 && i === post.comments.length - 1}
-						<p on:click={() => (seeMore = false)}>See less</p>
+						<p class="cursor-pointer  underline opacity-60" on:click={() => (seeMore = false)}>
+							See less
+						</p>
 					{/if}
 				{/if}
 			{/each}

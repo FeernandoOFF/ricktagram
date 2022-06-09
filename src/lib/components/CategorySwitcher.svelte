@@ -23,7 +23,6 @@
 
 <style>
 	.category-tab {
-		color: white;
 		width: 50%;
 	}
 	.tab-active {
