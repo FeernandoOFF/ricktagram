@@ -117,12 +117,16 @@
 			<b>-</b>
 			<p><span class="font-bold">{post.comments.length} </span> Comments</p>
 		</div>
-		<div class="comments mt-4 font-light text-neutral-focus text-xs">
+		<div
+			class="comments max-h-40 py-2 overflow-y-scroll mt-4 font-light text-neutral-focus text-xs"
+		>
 			{#each post.comments as comment, i}
 				{#if i >= 1 && !seeMore}
-					<p class="cursor-pointer  underline opacity-60" on:click={() => (seeMore = true)}>
-						See more
-					</p>
+					{#if i === 1}
+						<p class="cursor-pointer  underline opacity-60" on:click={() => (seeMore = true)}>
+							See more
+						</p>
+					{/if}
 				{:else}
 					<Comment {...comment} />
 					{#if post.comments.length > 1 && i === post.comments.length - 1}

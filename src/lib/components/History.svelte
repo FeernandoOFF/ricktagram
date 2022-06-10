@@ -1,5 +1,14 @@
-<div class="carrousel-item history-card rounded-2xl flex flex-col-reverse  ">
-	<div class="bottom w-full bg-base-200 pt-5 p-3 rounded-lg relative">
+<script lang="ts">
+	import type { IHistory } from '$lib/utils/historyInterface';
+
+	export let history: IHistory;
+</script>
+
+<div
+	class="carrousel-item history-card rounded-2xl flex flex-col-reverse  bg-cover bg-no-repeat bg-center "
+	style={`background-image:url(${history.image})`}
+>
+	<div class="bottom w-full bg-base-200 h-12 p-3 pt-5 rounded-lg relative">
 		<div class="history-avatar w-8 h-8  ">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +23,7 @@
 				/>
 			</svg>
 		</div>
-		<p class="text-sm">Amigo</p>
+		<p class="text-xs">{history.name}</p>
 	</div>
 </div>
 
@@ -24,7 +33,6 @@
 		height: min(400px, 190px);
 		width: max(15vw, 200px);
 		min-width: 140px;
-		background: red;
 	}
 	.history-avatar {
 		background: blue;
