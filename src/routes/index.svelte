@@ -46,5 +46,5 @@
 </div>
 
 {#if !!profile}
-	<Profile bind:profile />
+	<Profile closeModal={() => (profile = null)} bind:profile />
 {/if}

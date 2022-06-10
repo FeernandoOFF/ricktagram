@@ -1,16 +1,15 @@
 <script lang="ts">
 	import type { IUser } from '$lib/utils/userInterface';
 	import { fly } from 'svelte/transition';
+	import CategorySwitcher from './CategorySwitcher.svelte';
 
 	export let profile: IUser | null;
-	function closeModal() {
-		profile = null;
-	}
+	export let closeModal: () => void;
 </script>
 
 <div
 	transition:fly={{ y: 1000 }}
-	class="fixed h-[90vh] rounded-t-[2.5rem] w-screen bg-base-200  bottom-0 left-0"
+	class="fixed h-[90vh] max-h-[90vh] rounded-t-[2.5rem] w-screen bg-base-100  bottom-0 left-0 overflow-y-scroll"
 >
 	<div
 		class="profile h-[40vh] md:h-[60vh] rounded-t-[2.5rem] bg-no-repeat bg-cover bg-center p-8 relative"
@@ -63,10 +62,62 @@
 					/>
 				</svg>
 			</div>
-			<p>{profile?.name}</p>
+			<div class="text-center mx-auto my-4 z-10">
+				<h1>{profile?.name}</h1>
+				<div class="bio my-3 px-2  text-xs">
+					<p>Lorem ipsum dolor sit, amet consectetur</p>
+				</div>
+			</div>
 		</div>
 		<div
-			class="absolute w-full min-h-[10vh] bg-gradient-to-t from-base-200  via-base-200  bottom-0 left-0"
+			class="absolute w-full min-h-[15vh] bg-gradient-to-t from-base-100  via-base-100  bottom-0 left-0"
 		/>
 	</div>
+	<div class="content">
+		<div class="numbers max-w-md   flex justify-between mx-auto w-10/12 p-4 rounded-lg bg-base-200">
+			<div class="numbers-data w-1/3 text-center">
+				<span>100</span>
+				<p class="text-xs from-neutral-focus opacity-70">Posts</p>
+			</div>
+			<div class="numbers-data w-1/3 text-center">
+				<span>1,50K</span>
+				<p class="text-xs from-neutral-focus opacity-70">Followers</p>
+			</div>
+			<div class="numbers-data w-1/3 text-center">
+				<span>500</span>
+				<p class="text-xs from-neutral-focus opacity-70">Following</p>
+			</div>
+		</div>
+
+		<div class="my-8 mx-auto w-10/12">
+			<CategorySwitcher category="xd" />
+		</div>
+		<div
+			class="grid-container grid max-h-[50vh] max-w-5xl mx-auto gap-3 md:gap-8 justify-center p-1"
+		>
+			{#each Array.from(Array(7).keys()) as i}
+				<div class="w-full ">
+					<img
+						src="https://api.lorem.space/image/shoes?w=250&h=400"
+						alt=""
+						class="w-full rounded-md"
+					/>
+				</div>
+			{/each}
+		</div>
+	</div>
 </div>
+
+<style>
+	.grid-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 170px);
+		grid-auto-rows: minmax(20px, auto);
+		justify-content: center;
+	}
+	@media screen and (min-width: 768px) {
+		.grid-container {
+			grid-template-columns: repeat(auto-fill, 270px);
+		}
+	}
+</style>
