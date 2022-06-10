@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { IUser } from '$lib/utils/userInterface';
+	import { fly } from 'svelte/transition';
 
 	export let profile: IUser | null;
 	function closeModal() {
@@ -7,7 +8,10 @@
 	}
 </script>
 
-<div class="fixed h-[90vh] rounded-t-[2.5rem] w-screen bg-base-200  bottom-0 left-0">
+<div
+	transition:fly={{ y: 1000 }}
+	class="fixed h-[90vh] rounded-t-[2.5rem] w-screen bg-base-200  bottom-0 left-0"
+>
 	<div
 		class="profile h-[40vh] md:h-[60vh] rounded-t-[2.5rem] bg-no-repeat bg-cover bg-center p-8 relative"
 		style:background-image="url('https://api.lorem.space/image/shoes?w=800&h=550')"
