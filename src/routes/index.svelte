@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { AnimateSharedLayout, AnimatePresence, Motion } from 'svelte-motion';
+
 	import type { IUser } from '$lib/utils/userInterface';
 
 	import TimeLine from './../lib/components/containers/TimeLine.svelte';
@@ -12,13 +14,35 @@
 
 	let category = Categories.EXPLORE;
 	let profile: IUser | null;
+	let selectedHistory = '';
 </script>
 
 <div class="container-width">
 	<TimeLine>
-		{#each historiesPlaceholder as history}
-			<History {history} />
-		{/each}
+		<AnimateSharedLayout type="crossfade">
+			<Motion let:motion={grid} layout>
+				{#each historiesPlaceholder as history}
+					<History {history} bind:selectedHistory />
+				{/each}
+			</Motion>
+			<AnimatePresence
+				history={historiesPlaceholder.find((his) => his.id === selectedHistory)}
+				let:history
+			>
+				<div class="modal" id="my-modal-2">
+					<div class="modal-box">
+						<h3 class="font-bold text-lg">{history.name}</h3>
+						<p class="py-4">
+							You've been selected for a chance to get one year of subscription to use Wikipedia for
+							free!
+						</p>
+						<div class="modal-action">
+							<a href="#" class="btn">Yay!</a>
+						</div>
+					</div>
+				</div>
+			</AnimatePresence>
+		</AnimateSharedLayout>
 	</TimeLine>
 	<Main>
 		<CategorySwitcher bind:category />

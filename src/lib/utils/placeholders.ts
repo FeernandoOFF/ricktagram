@@ -6,9 +6,12 @@ import type { IPost } from './postInterface';
 import type { IComment } from './commentInterface';
 import { text } from 'svelte/internal';
 
-export const historiesPlaceholder: IHistory[] = createArray(10).map(() => ({
+export const historiesPlaceholder: IHistory[] = createArray(3).map(() => ({
+	id: faker.database.mongodbObjectId(),
+
 	name: faker.name.findName(),
-	image: faker.image.abstract(255, 400)
+	image: faker.image.abstract(255, 400),
+	avatar: faker.internet.avatar()
 }));
 
 export const postsPlaceholder: IPost[] = createArray(10).map(() => ({
