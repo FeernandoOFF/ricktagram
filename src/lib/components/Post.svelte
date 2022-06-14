@@ -12,7 +12,8 @@
 
 <div class="card w-full md:max-w-[800px] mx-auto bg-base-200 shadow-xl py-4 px-2 text-sm my-8 ">
 	<div class="post-head flex justify-between  items-center mb-3">
-		<div
+		<a
+			href="#profile-{profile?.id}"
 			class="post-friend flex items-center cursor-pointer"
 			on:click={() => (profile = post.user)}
 		>
@@ -34,7 +35,7 @@
 				<p>{post.user.name}</p>
 				<span>{post.time} mins ago </span>
 			</div>
-		</div>
+		</a>
 		<div class="share p-2 bg-base-300 rounded-full">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -139,3 +140,9 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.post-friend:target {
+		display: block;
+	}
+</style>

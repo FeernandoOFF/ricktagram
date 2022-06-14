@@ -24,7 +24,7 @@ export const postsPlaceholder: IPost[] = createArray(10).map(() => ({
 	likes: faker.datatype.number(100),
 	time: faker.datatype.number(100),
 	user: {
-		id: 2,
+		id: faker.datatype.number(100),
 		name: faker.name.findName()
 	}
 }));

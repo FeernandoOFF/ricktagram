@@ -1,14 +1,15 @@
 <script lang="ts">
 	import type { IHistory } from '$lib/utils/historyInterface';
 
-	export let selectedHistory;
+	export let selectedHistory: IHistory;
 	export let history: IHistory;
 </script>
 
-<div
+<a
+	href="#my-modal-2"
 	class="carrousel-item history-card rounded-2xl flex flex-col-reverse  bg-cover bg-no-repeat bg-center "
 	style={`background-image:url(${history.image})`}
-	on:click={() => (selectedHistory = history.id)}
+	on:click={() => (selectedHistory = history)}
 >
 	<div class="bottom w-full bg-base-200 h-16  p-2 pt-7 rounded-lg relative">
 		<p
@@ -17,7 +18,7 @@
 		/>
 		<p class="text-xs">{history.name}</p>
 	</div>
-</div>
+</a>
 
 <style>
 	.history-card {
