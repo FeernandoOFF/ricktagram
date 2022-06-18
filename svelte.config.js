@@ -13,11 +13,11 @@ const config = {
 			
 		alias: {
 			$components: 'src/lib/components'
+		},
+		prerender: {
+			// This can be false if you're using a fallback (i.e. SPA mode)
+			default: true
 		}
-		// prerender: {
-		// 	// This can be false if you're using a fallback (i.e. SPA mode)
-		// 	default: true
-		// }
 	},
 	preprocess: [
 		preprocess({
