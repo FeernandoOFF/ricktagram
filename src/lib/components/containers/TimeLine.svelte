@@ -6,24 +6,11 @@
 	import History from '../History.svelte';
 
 	let selectedHistory: IHistory;
-
-	const [send, receive] = crossfade({
-		duration: (d) => Math.sqrt(d * 200),
-
-		fallback(node, params) {
-			const style = getComputedStyle(node);
-			const transform = style.transform === 'none' ? '' : style.transform;
-
-			return {
-				duration: 600,
-				easing: quintOut,
-				css: (t) => `
-				transform: ${transform} scale(${t});
-				opacity: ${t}
-			`
-			};
-		}
-	});
+	function nextHistory() {
+		let index = historiesPlaceholder.findIndex((value) => value.id === selectedHistory.id);
+		if (++index > historiesPlaceholder.length + 1) return;
+		selectedHistory = historiesPlaceholder[index];
+	}
 </script>
 
 <div class="p-2">
@@ -37,9 +24,15 @@
 	{#if selectedHistory}
 		<div class="modal" id="my-modal-2">
 			<div
-				class="modal-box history-modal bg-cover bg-center p-0"
+				class="modal-box history-modal bg-cover bg-center p-0 relative"
 				style="background-image: url('{selectedHistory.image}')"
 			>
+				<div
+					class="absolute top-[50vh] bg-red-400 p-4 right-0 -translate-y-1/2"
+					on:click={nextHistory}
+				>
+					>
+				</div>
 				<div
 					class="flex justify-between  bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 p-4 w-full"
 				>
