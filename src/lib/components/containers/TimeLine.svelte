@@ -1,8 +1,6 @@
 <script lang="ts">
 	import type { IHistory } from '$lib/utils/historyInterface';
 	import { historiesPlaceholder } from '$lib/utils/placeholders';
-	import { quintOut } from 'svelte/easing';
-	import { crossfade } from 'svelte/transition';
 	import History from '../History.svelte';
 
 	let selectedHistory: IHistory;
