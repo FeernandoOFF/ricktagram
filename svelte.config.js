@@ -5,12 +5,12 @@ import preprocess from 'svelte-preprocess';
 const config = {
 	kit: {
 		adapter:
-			adapter(),
-			// 	{
-			// 	pages: 'build',
-			// 	assets: 'build',
-			// 	fallback: null
-			// }
+			adapter(	{
+				pages: 'build',
+				assets: 'build',
+				fallback: null
+			}),
+			
 		alias: {
 			$components: 'src/lib/components'
 		}
